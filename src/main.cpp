@@ -70,7 +70,6 @@ int main(int argc, char *argv[]) {
 				fileName = argv[3];
 				newFileName = argv[4];
 			}
-            std::cout << fileName << " " << newFileName << std::endl;
 
 			FILE *file;
 			FILE *fileSystem;
