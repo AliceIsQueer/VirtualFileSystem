@@ -51,12 +51,18 @@ int main(int argc, char *argv[]) {
 
 	if (choice == 2) {
 		std::string fileName;
+		std::string newFileName;
 		if (argc <= 3) {
-			std::cout << "Please input the name of the file you wish to copy\n";
-			std::cin >> fileName;
+			std::cout << "Please input the name of the file you wish to copy as well as its new filename\n";
+			std::cin >> fileName >> newFileName;
 		} 
+		if (argc <= 4) {
+			fileName = argv[3];
+			newFileName = argv[3];
+		}
 		else {
 			fileName = argv[3];
+			newFileName = argv[4];
 		}
 
 		FILE *fileSystem;
@@ -65,7 +71,7 @@ int main(int argc, char *argv[]) {
 		fileSystem = fopen(filesystemName.c_str(), "rb+");
 		file = fopen(fileName.c_str(), "r");
 
-		copyTo(fileSystem, file, fileName);
+		copyTo(fileSystem, file, newFileName);
 
 		fclose(fileSystem);
 		fclose(file);
@@ -79,7 +85,7 @@ int main(int argc, char *argv[]) {
 		fileSystem = fopen(filesystemName.c_str(), "r");
 
 		if (argc <= 3) {
-			std::cout << "Please input the name of the file you wish to copy from filesystem, as well a the new filename:\n";
+			std::cout << "Please input the name of the file you wish to copy from filesystem, as well the new filename:\n";
 			ls(fileSystem);
 			std::cin >> virtualFileName >> fileName;
 		}
