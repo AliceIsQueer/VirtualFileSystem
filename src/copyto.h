@@ -15,6 +15,10 @@ void copyTo(FILE *filesystem, FILE *file, std::string fileName) {
 	fseek(filesystem, sizeof(struct Superblock), SEEK_SET); // Move to where Inodes are
 
 	long firstINode = getFreeINodeOffset(filesystem);
+	if(firstINode == -1) {
+		std::cout << "File limit reached" << std::endl;
+		return;
+	}
 	INode inode;
 	fseek(filesystem, firstINode, SEEK_SET);
 	fread(&inode, sizeof(struct INode), 1, filesystem);
